@@ -1,6 +1,3 @@
-import { loginState } from './atoms'
-
-import { useRecoilValue } from 'recoil'
 import React from 'react'
 
 type Props = {
@@ -8,7 +5,6 @@ type Props = {
 }
 
 const SubmitButton: React.FC<Props> = ({ text }: Props) => {
-  const state = useRecoilValue(loginState)
   return (
       <>
       

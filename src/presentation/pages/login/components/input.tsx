@@ -1,6 +1,3 @@
-import { loginState } from './atoms'
-
-import { useRecoilState } from 'recoil'
 import React from 'react'
 
 type Props = {
@@ -10,7 +7,6 @@ type Props = {
 }
 
 const Input: React.FC<Props> = ({ type, name, placeholder }: Props) => {
-  const [state, setState] = useRecoilState(loginState)
   return (
 
     <>
