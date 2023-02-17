@@ -5,8 +5,16 @@ export interface LoadSurveyList {
 export namespace LoadSurveyList {
   export type Model = {
     id: string
-    question: string
-    date: Date
-    didAnswer: boolean
+    strDOI: string
+    objRol: Parameter,
+    blnRegisterComplete: boolean,
+    objStatus: Parameter,
+    strEmail: string,
+    blnActive: boolean
+  }
+
+  export type Parameter = {
+    strCode: string,
+    strDescription: string
   }
 }

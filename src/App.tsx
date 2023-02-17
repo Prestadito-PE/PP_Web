@@ -2,10 +2,13 @@ import { makeRemoteLoadSurveyList } from './main/factories/usecases/get-user-lis
 
 function App() {
   const user = makeRemoteLoadSurveyList()
-  console.log(user)
+  user.loadAll().then(item => {
+    console.log(item)
+  })
   return (
     <div className="App">
       <h3>Hola prestadito  </h3>
+      <h1>KEVIN REVISA EL LOG :v</h1>
     </div>
   );
 }

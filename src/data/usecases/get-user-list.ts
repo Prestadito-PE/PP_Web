@@ -1,5 +1,5 @@
-import { HttpClient, HttpStatusCode } from '@/data/protocols/http'
-import { UnexpectedError, AccessDeniedError } from '@/domain/errors'
+import { HttpClient, HttpStatusCode } from '../protocols/http'
+import { UnexpectedError, AccessDeniedError } from '../../domain/errors'
 import { UserList } from '@/domain/usecases'
 
 export class RemoteUserList implements UserList {
