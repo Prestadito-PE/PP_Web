@@ -4,4 +4,4 @@ import { RemoteLoadSurveyList } from '../../../../src/data/usecases'
 import { LoadSurveyList } from '@/domain/usecases'
 
 export const makeRemoteLoadSurveyList = (): LoadSurveyList =>
-  new RemoteLoadSurveyList('http://localhost:1001/api/security/users/active', makeAuthorizeHttpClientDecorator())
+  new RemoteLoadSurveyList('https://localhost:7082/api/security/users', makeAuthorizeHttpClientDecorator())
