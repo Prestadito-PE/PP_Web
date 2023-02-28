@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    background-color: #F6F6F6;
+}
+
+
+.title-font{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 2rem;
+line-height: 2rem;
+text-align: center;
+color: #000000;
+}
+.title-font>span{
+    
+color: #59B15D;
+}
