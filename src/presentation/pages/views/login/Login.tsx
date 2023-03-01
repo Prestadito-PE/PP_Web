@@ -1,6 +1,9 @@
 import { Box, Grid } from "@mui/material"
-
 import bg_auth from "../../../../assets/image/auth/bg_auth.png";
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
+import PersonIcon from '@mui/icons-material/Person';
+import Input from '@mui/material/Input';
 
 export const Login = () => {
 
@@ -10,8 +13,35 @@ export const Login = () => {
       <Grid item xs={12} md={6} sx={{
         padding:"3rem"
       }}>
-        <Box>
-        <h3 className="title-font">WELCOME TO <span>PRESTADITO</span></h3>
+        <Box component="form"
+        autoComplete="off">
+        <h3 className="title-font">
+          WELCOME TO <span>PRESTADITO</span>
+        </h3>
+       
+        <Grid container>
+                  <Grid xs={12} paddingX={5} marginY={2}>
+                  <TextField 
+                  size="small" 
+                  sx={{width:"100%"}}
+                  label="Email" 
+                  variant="outlined"
+                  placeholder="Email"
+                  color="info"
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start"><PersonIcon /></InputAdornment>,
+                  }} />
+        </Grid>
+
+
+                  <Grid xs={12} paddingX={5} marginY={2}>
+asdads
+                  </Grid>
+        </Grid>
+       
+       
+
+       
         </Box>  
       </Grid>
 
@@ -22,7 +52,7 @@ export const Login = () => {
           padding:"3rem"
         }}>
 
-      asdfaf
+      
 
       </Grid>
     </Grid>
