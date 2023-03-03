@@ -1,11 +1,11 @@
-import "../../../assets/styles/auth.css";
+import "../../assets/styles/auth.css";
 import Box from '@mui/material/Box';
-import { useState } from "react"
-import { Login } from "../views/login/Login"
-import { Register } from "../views/register/Register"
+import { Route, Routes } from "react-router"
+import { Login } from "../pages/views/login/Login"
+import { Register } from "../pages/views/register/Register"
 import { createTheme } from "@mui/material";
 
-export const MainAuth = () => {
+export const AuthRouter = () => {
 
     const theme=createTheme({
         breakpoints:{
@@ -19,7 +19,6 @@ export const MainAuth = () => {
         }
     })
 
-    const [page, setPage] = useState(0) 
 
   return (
     <>
@@ -43,23 +42,21 @@ export const MainAuth = () => {
                     lg:"50%"
 
                 },
-                height:"35rem",
+                height:"32rem",
                 borderRadius:"20px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
 
                 backgroundColor:"#ffffff"
             }}
             >
-            {
-                    page===0
-                    ?<Login />
-                    :<Register />
-            }
-
+                
+            <Routes>
+                <Route path="login" element={<Login />}/>
+                <Route path="register" element={<Register />}/>
+                <Route path="*" element={<Login />}/>
+            </Routes>
 
             </Box>
-
-
         </Box>
 
 
