@@ -22,7 +22,7 @@ export const Register = () => {
                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
                     </ul>
                     <Grid item xs={12} textAlign={'center'}>
-                            <Link to="/auth/register" className='link'>Ingresar ahora</Link>
+                            <Link to="/auth/login" className='link'>Ingresar ahora</Link>
                         </Grid>
             </Grid>
         </Grid>

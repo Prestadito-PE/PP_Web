@@ -10,12 +10,12 @@ body{
 }
 
 .animation-left{
-    animation: fadeLeft 1.5s;
+    animation: fadeLeft 2s;
     animation-iteration-count: 1;
 }
 
 .animation-rigth{
-    animation: fadeRigth 1.5s;
+    animation: fadeRigth 2s;
     animation-iteration-count: 1;
 }
 
@@ -25,7 +25,7 @@ body{
 
 @keyframes fadeLeft{
     from{
-        transform: translate3d(-250px, 0, 0); opacity: 0.5;
+        transform: translate3d(-100%, 0, 0); opacity: 0.3;
     }
     to{
         transform: translate3d(0, 0, 0); opacity: 1;
@@ -33,7 +33,7 @@ body{
 }
 
 @keyframes fadeRigth{
-    from{transform: translate3d(250px, 0, 0); opacity: 0.5;}
+    from{transform: translate3d(100%, 0, 0); opacity: 0.3;}
     to{transform: translate3d(0, 0, 0); opacity: 1;}
 }
 
@@ -60,8 +60,18 @@ color: #59B15D;
     border: 2px solid #D6D6D6;
     border-radius: 50px;
     transition: all .25s ease;
-  }
+}
   
+.input-error{
+    border: 2px solid #ff0000;
+}
+.span-validate{
+    font-size: 0.9rem;
+    color: #ff0000;
+    padding-left: 1rem;
+    line-height: 1.5;
+}
+
 .input-container:focus-within{
     border: 2px solid #7B809A;
 }
