@@ -7,6 +7,8 @@ import Logo from '../../../../assets/image/logo_prestadito.png';
 
 export const Register = () => {
 
+
+
   return (
     <>
     <Grid container sx={{height:"100%"}}>

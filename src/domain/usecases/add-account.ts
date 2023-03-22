@@ -6,11 +6,12 @@ export interface AddAccount {
 
 export namespace AddAccount {
   export type Params = {
-    name: string
-    email: string
-    password: string
-    passwordConfirmation: string
+    strEmail:string
+    strPassword:string
+    strPasswordConfirmation: string
   }
 
   export type Model = AccountModel
+
+  
 }

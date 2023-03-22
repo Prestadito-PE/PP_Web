@@ -3,10 +3,11 @@ import { Box, Grid } from "@mui/material"
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
 import Logo from '../../../../assets/image/logo_prestadito.png';
+import { AddAccount } from '@/domain/usecases'
 import { useForm } from '../../../hooks/useForm';
-import { authLogin } from '@/presentation/interfaces/Login.interface';
 import { AxiosRequestConfig } from 'axios';
 import { useEffect } from 'react';
+
 
 interface formLogin{
   strEmail:string;
@@ -19,11 +20,19 @@ const initialForm:formLogin={
 }
 
 
+type Props={
+  addAccount:AddAccount
+}
+
 const validationForm=(formObj:formLogin)=>{
+
+
+
   let errors:formLogin|null={
     strEmail:"",
     strPassword:""
   };
+
   let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
 
   if(!formObj.strEmail.trim()){
@@ -40,7 +49,8 @@ const validationForm=(formObj:formLogin)=>{
 const url =`https://qas-gateway.azurewebsites.net/security/api/users/login`;
 
 
-export const Login = () => {
+export const Login = ({addAccount}:Props) => {
+
   const {
     form,
     errors,
@@ -49,6 +59,17 @@ export const Login = () => {
     handleBur,
     handleSubmit
   }=useForm(initialForm,validationForm)
+
+
+  // var resp = addAccount.add({
+  //   strEmail:form.strEmail,
+  //   strPassword:form.strPassword,
+  //   strPasswordConfirmation:""
+  // })
+
+
+  console.log(process.env.REACT_APP_BACKEND_URL);
+
 
   const configAxios:AxiosRequestConfig = {
     headers:{
