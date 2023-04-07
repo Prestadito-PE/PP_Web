@@ -12,7 +12,9 @@ export const ContainerAuth = styled.div`
     align-items:center;
 
 
-  &::after {
+    ${md}{
+
+        &::after {
     content: '';
     position: absolute;
     z-index: -1;
@@ -34,6 +36,9 @@ export const ContainerAuth = styled.div`
     top: 0; 
     left: 0;
   }
+
+    }
+
 
 
     .cont-auth{
