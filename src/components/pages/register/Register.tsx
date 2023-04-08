@@ -12,49 +12,61 @@ import { SH3 } from '../../common/h/Titles';
 import { GridContent, GridForm } from "./RegisterComponents";
 import { useForm } from "../../../hooks/useForm";
 import { SpanErr } from "../../common/span/Spans";
+// import { createUser } from "../../../services/security/user.service";
+import { FormUser, FormUserServiceMapper  } from '../../../types/interfaces/User.interface';
+import { createUser } from "../../../services/security/user.service";
+import { useState } from "react";
+// import { createUser } from "../../../services/security/user.service";
 
-interface FormValues {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+
+
 
 
 const Register = () => {
 
-  const initialValues: FormValues = {
-    email: '',
-    password: '',
-    confirmPassword: '',
+  const [isLoading, setIsLoading] = useState(false);
+
+  const initialValues: FormUser = {
+    strEmail: '',
+    strPassword: '',
+    strconfirmPassword: '',
   };
 
+  const validate=(values:{ [key: string]: any } )=>{
+    const errors: { [key: string]: string } = {};
+    if (!values.strEmail) {
+      errors.strEmail = 'El email es obligatorio';
+    } else if (!/\S+@\S+\.\S+/.test(values.strEmail)) {
+      errors.strEmail = 'El email no es válido';
+    }
+
+    if (!values.strPassword) {
+      errors.strPassword = 'La contraseña es obligatoria';
+    } else if (values.strPassword.length < 6) {
+      errors.strPassword = 'La contraseña debe tener al menos 6 caracteres';
+    }
+
+    if (values.strconfirmPassword !== values.strPassword) {
+      console.log(values.strPassword, values.strconfirmPassword,values);
+      errors.strconfirmPassword = 'Las contraseñas no coinciden';
+    }
+    return errors;
+  }
+
+  const onSubmit = async(values:{ [key: string]: any }) => {
+    setIsLoading(true);
+    const UserVal=FormUserServiceMapper.map(values); 
+    const response =await createUser(UserVal);
+    console.log(response);
+    setIsLoading(false);
+
+    console.log('Form values', UserVal);
+  };
 
   const { values, errors, handleChange, handleSubmit } = useForm({
     initialValues,
-    onSubmit:(values)=>{
-      console.log(values);
-    },
-    validate:(values)=>{
-      const errors: { [key: string]: string } = {};
-
-      if (!values.email) {
-        errors.email = 'El email es obligatorio';
-      } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-        errors.email = 'El email no es válido';
-      }
-  
-      if (!values.password) {
-        errors.password = 'La contraseña es obligatoria';
-      } else if (values.password.length < 6) {
-        errors.password = 'La contraseña debe tener al menos 6 caracteres';
-      }
-  
-      if (values.password !== values.confirmPassword) {
-        errors.confirmPassword = 'Las contraseñas no coinciden';
-      }
-  
-      return errors;
-    }
+    onSubmit,
+    validate
   });
 
   return (
@@ -87,46 +99,46 @@ const Register = () => {
                 <Grid maxHeight={"100%"} container>
                   
                           <Grid item xs={12} paddingX={5} marginY={1}>
-                              <DivInput valid={!errors.email?true:false}>
+                              <DivInput valid={!errors.strEmail?true:false}>  
                                 <PersonIcon />
                                 <SInput 
                                 type="text"
-                                name="email"
-                                value={values.email}
+                                name="strEmail"
+                                value={values.strEmail}
                                 onChange={handleChange}
                                 placeholder="Email" />
                               </DivInput>
-                              {errors.email && <SpanErr>{errors.email}</SpanErr>}
+                              {errors.strEmail && <SpanErr>{errors.strEmail}</SpanErr>}
                           </Grid>
 
                           <Grid item xs={12} paddingX={5} marginY={1}>
-                            <DivInput valid={!errors.password?true:false}>
+                            <DivInput valid={!errors.strPassword?true:false}>
                                 <KeyIcon />
                                 <SInput 
                                 type="password"
-                                name="password"
-                                value={values.password}
+                                name="strPassword"
+                                value={values.strPassword}
                                 onChange={handleChange}
                                 placeholder="Password" />
                             </DivInput>
-                            {errors.password && <SpanErr>{errors.password}</SpanErr>}
+                            {errors.strPassword && <SpanErr>{errors.strPassword}</SpanErr>}
                           </Grid>
 
                           <Grid item xs={12} paddingX={5} marginY={1}>
-                            <DivInput valid={!errors.confirmPassword?true:false}>
+                            <DivInput valid={!errors.strconfirmPassword?true:false}>
                                 <KeyIcon />
                                 <SInput 
                                 type="password"
-                                name="confirmPassword"
-                                value={values.confirmPassword}
+                                name="strconfirmPassword"
+                                value={values.strconfirmPassword}
                                 onChange={handleChange}
                                 placeholder="Re-Password" />
                             </DivInput  >
-                            {errors.confirmPassword && <SpanErr>{errors.confirmPassword}</SpanErr>}
+                            {errors.strconfirmPassword && <SpanErr>{errors.strconfirmPassword}</SpanErr>}
                           </Grid>
 
                           <Grid item xs={12} paddingX={5}>
-                            <SButton type="submit">Registrarse</SButton>
+                            <SButton type="submit" isActive={isLoading} disabled={isLoading}>{isLoading?'Enviando':'Registrarse'}</SButton>
                           </Grid>
                           <Grid item xs={12} paddingX={5}>
                             <TextLink>Si cuentas con usuario 

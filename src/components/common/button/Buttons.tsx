@@ -6,10 +6,11 @@ interface ButtonProps{
     txtColor?: string;
     bgHoverColor?:string;
     txtHoverColor?:string;
+    isActive?:boolean;
 }
 
 export const SButton=styled.button<ButtonProps>`
-    background-color: ${props=>props.bgColor || Colors.green_700};
+    background-color: ${props=>props.isActive===false?(props.bgColor || Colors.green_700):Colors.gray_800};
     width: 100%;
     color:${props=>props.txtColor || Colors.light};
     border-radius: 50px;
@@ -21,12 +22,12 @@ export const SButton=styled.button<ButtonProps>`
     letter-spacing: 0.02857em;
     line-height: 1.75;
     border: 0;
-    cursor: pointer;
+    cursor: ${props=>props.isActive===false?"pointer":"none"};
     transition: all .25s ease;
     :hover{
-        background-color: ${props=>props.bgHoverColor || Colors.green_800};
+        background-color: ${props=>props.isActive===false?(props.bgHoverColor || Colors.green_800):Colors.gray_800};
     }
     :active{
-        transform: translateY(2px);
+        transform:  ${props=>props.isActive===false?"translateY(2px)":"none"};
     }
 `;
