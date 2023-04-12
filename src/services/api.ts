@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { Response } from '../types/response.interface';
+import config from './config';
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: config.apiBaseUrl,
 });
 
 

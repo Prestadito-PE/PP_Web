@@ -1,16 +1,21 @@
+const securtiy=`/security/api`;
+
 const config = {
-    apiBaseUrl: process.env.REACT_APP_BASE_URL || 'https://localhost:1001/api',
+    apiBaseUrl: process.env.REACT_APP_BASE_URL || 'https://localhost:1000',
     endpoints: {
-      users: {
-      register:'/users',
-      get:'/users',
-      update:'/users',
-      disable:'/users/disable',
-      delete:'/users/delete'
-    },
-    sessions:{
-        login:'/sessions/login'
-    }
+      securtiy:{
+        users: {
+          register:`${securtiy}/users`,
+          get:`${securtiy}/users`,
+          update:`${securtiy}/users`,
+          disable:`${securtiy}/users/disable`,
+          delete:`${securtiy}/users/delete`
+        },
+        sessions:{
+            login:`${securtiy}/login`
+        }
+      }
+
       // ...agrega aquí otros endpoints que necesites
     },
   };
