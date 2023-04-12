@@ -10,49 +10,93 @@ import { SButton } from "../../common/button/Buttons";
 import { TextLink } from "../../common/p/Ps";
 import { SUl } from "../../common/ul/Uls";
 import { LinkAuth } from "../../common/a/As";
+import { FormLoginServiceMapper } from "../../../types/interfaces/User.interface";
+import { LoginUser } from "../../../services/security/security.service";
+import { useForm } from "../../../hooks/useForm";
+import { SpanErr } from "../../common/span/Spans";
 
+
+interface FormUser{
+  strEmail:string;
+  strPassword:string;
+}
 
 const Login = () => {
+
+  const initialValues: FormUser = {
+    strEmail: '',
+    strPassword: ''
+  };
+
+  const validate=(values:{ [key: string]: any } )=>{
+    const errors: { [key: string]: string } = {};
+    if (!values.strEmail) {
+      errors.strEmail = 'El email es obligatorio';
+    } else if (!/\S+@\S+\.\S+/.test(values.strEmail)) {
+      errors.strEmail = 'El email no es válido';
+    }
+
+    if (!values.strPassword) {
+      errors.strPassword = 'La contraseña es obligatoria';
+    } else if (values.strPassword.length < 6) {
+      errors.strPassword = 'La contraseña debe tener al menos 6 caracteres';
+    }
+    return errors;
+  }
+
+  const onSubmit = async(values:{ [key: string]: any }) => {
+    const UserVal=FormLoginServiceMapper.map(values); 
+    console.log(UserVal);
+    const response =await LoginUser(UserVal);
+    console.log(response);
+  };
+
+
+  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
+    initialValues,
+    onSubmit,
+    validate
+  });
+
+
   return (
     <>
     <Grid container sx={{height:"100%"}}>
         <GridForm item xs={12} md={6}>
             <Box component="form"
+            onSubmit={handleSubmit}
             autoComplete="off">
             <SH3>
               BIENVENIDO A <span>PRESTADITO</span>
             </SH3>
                 <Grid maxHeight={"100%"} container>
                           <Grid item xs={12} paddingX={5} marginY={1}>
-                          <DivInput>
+                          <DivInput valid={!errors.strEmail?true:false}>
                             <PersonIcon />
                             <SInput width="100%"
                             type="email"
-                            // className="input-field"
-                            placeholder="Email" 
-                            // value={form.strEmail}
-                            // onChange={({target})=>handleChange(target.value,'strEmail')}
-                            // onBlur={({target})=>handleBur(target.value,'strEmail')}
-                            />
-                            
+                            name="strEmail"
+                            value={values.strEmail}
+                            onChange={handleChange}
+                            placeholder="Email" />
                           </DivInput>
-                          {/* {errors.strEmail && <span className='span-validate'>{errors.strEmail}</span>} */}
+                          {errors.strEmail && <SpanErr>{errors.strEmail}</SpanErr>}
                           </Grid>
                           <Grid item xs={12} paddingX={5} marginY={1}>
-                          <DivInput>
+                          <DivInput valid={!errors.strPassword?true:false}>
                             <KeyIcon />
                             <SInput 
-                            type="password"
-                            placeholder="Password" 
-                            // value={form.strPassword}
-                            // onChange={({target})=>handleChange(target.value,'strPassword')}
-                            // onBlur={({target})=>handleBur(target.value,'strPassword')}
+                                type="password"
+                                name="strPassword"
+                                value={values.strPassword}
+                                onChange={handleChange}
+                                placeholder="Password"
                             />
                           </DivInput>
-                          {/* {errors.strPassword && <span className='span-validate'>{errors.strPassword}</span>} */}
+                          {errors.strPassword && <SpanErr>{errors.strPassword}</SpanErr>}
                           </Grid>
                           <Grid item xs={12} paddingX={5}>
-                          <SButton type="submit">Iniciar sesión</SButton>
+                          <SButton type="submit" isActive={isLoading} disabled={isLoading}>{isLoading?'Enviando':'Iniciar sesión'}</SButton>
                           </Grid>
                           <Grid item xs={12} paddingX={5}>
                           <TextLink>No tienes una cuenta? 

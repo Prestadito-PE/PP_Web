@@ -1,14 +1,19 @@
+import { DeviceType } from "../../utils/DeviceType";
+
 export interface User {
     strEmail:    string;
     strPassword: string;
     strRolId:    string;
 }
 
-export interface FormUser{
-    strEmail: string;
-    strPassword: string;
-    strconfirmPassword: string;
+
+export interface Login{
+  strEmail: string;
+  strPassword: string;
+  strDeviceName: string;
 }
+
+
 
 
 export class FormUserServiceMapper {
@@ -19,4 +24,14 @@ export class FormUserServiceMapper {
         strRolId: '1',
       };
     }
+}
+
+export class FormLoginServiceMapper {
+  static map(formValues: { [key: string]: any }): Login {
+    return {
+      strEmail: formValues.strEmail,
+      strPassword: formValues.strPassword,
+      strDeviceName: DeviceType(),
+    };
   }
+}

@@ -13,14 +13,18 @@ import { GridContent, GridForm } from "./RegisterComponents";
 import { useForm } from "../../../hooks/useForm";
 import { SpanErr } from "../../common/span/Spans";
 // import { createUser } from "../../../services/security/user.service";
-import { FormUser, FormUserServiceMapper  } from '../../../types/interfaces/User.interface';
+import { FormUserServiceMapper  } from '../../../types/interfaces/User.interface';
 import { createUser } from "../../../services/security/user.service";
 import LoadingPopup from "../../common/popup/LoadingPopup";
 // import { createUser } from "../../../services/security/user.service";
 
 
 
-
+interface FormUser{
+  strEmail:string;
+  strPassword:string;
+  strconfirmPassword:string;
+}
 
 const Register = () => {
 
