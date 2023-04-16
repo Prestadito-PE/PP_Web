@@ -10,10 +10,12 @@ import { SButton } from "../../common/button/Buttons";
 import { TextLink } from "../../common/p/Ps";
 import { SUl } from "../../common/ul/Uls";
 import { LinkAuth } from "../../common/a/As";
-import { FormLoginServiceMapper } from "../../../types/interfaces/User.interface";
+import { FormLoginServiceMapper } from "../../interfaces/User/User.interface";
 import { LoginUser } from "../../../services/security/security.service";
 import { useForm } from "../../../hooks/useForm";
 import { SpanErr } from "../../common/span/Spans";
+import jwt_decode from 'jwt-decode';
+
 
 
 interface FormUser{
@@ -38,7 +40,7 @@ const Login = () => {
 
     if (!values.strPassword) {
       errors.strPassword = 'La contraseña es obligatoria';
-    } else if (values.strPassword.length < 6) {
+    } else if (values.strPassword.length < 3) {
       errors.strPassword = 'La contraseña debe tener al menos 6 caracteres';
     }
     return errors;
@@ -50,7 +52,8 @@ const Login = () => {
     const response =await LoginUser(UserVal);
     try{
       if(!response.error && response.item?.strToken){
-          
+        var decodeToken = jwt_decode(response.item.strToken);
+        console.log(decodeToken);
       }
     }catch(err){
       console.log(err);

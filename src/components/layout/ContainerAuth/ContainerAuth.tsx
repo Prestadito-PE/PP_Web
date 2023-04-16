@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {xs,sm,md,lg} from '../../../media';
-import { Colors } from '../../../utils/Colors';
+import {xs,sm,md,lg} from '../../../styles/media';
+import { Colors } from '../../../styles/Colors';
 
 export const ContainerAuth = styled.div`
 

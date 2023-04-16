@@ -1,4 +1,4 @@
-import { DeviceType } from "../../utils/DeviceType";
+import { DeviceType } from "../../../utils/DeviceType";
 
 export interface User {
     strEmail:    string;
@@ -18,6 +18,8 @@ export interface ResponseLogin{
   strId:string;
   strToken:string;
 }
+
+
 
 
 export class FormUserServiceMapper {

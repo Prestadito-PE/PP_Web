@@ -1,5 +1,5 @@
-import { Login, ResponseLogin } from "../../types/interfaces/User.interface";
-import { Response } from "../../types/response.interface";
+import { Login, ResponseLogin } from "../../components/interfaces/User/User.interface";
+import { Response } from "../../components/interfaces/response.interface";
 import { post } from '../api';
 import config from "../config";
 

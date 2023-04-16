@@ -1,5 +1,5 @@
-import { User } from "../../types/interfaces/User.interface";
-import { Response } from "../../types/response.interface";
+import { User } from "../../components/interfaces/User/User.interface";
+import { Response } from "../../components/interfaces/response.interface";
 import { get, del, post, put } from '../api';
 import config from "../config";
 

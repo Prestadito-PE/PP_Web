@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Response } from '../types/response.interface';
+import { Response } from '../components/interfaces/response.interface';
 import config from './config';
 
 const instance = axios.create({
