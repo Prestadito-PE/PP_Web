@@ -14,6 +14,10 @@ export interface Login{
 }
 
 
+export interface ResponseLogin{
+  strId:string;
+  strToken:string;
+}
 
 
 export class FormUserServiceMapper {

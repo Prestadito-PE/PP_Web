@@ -48,7 +48,13 @@ const Login = () => {
     const UserVal=FormLoginServiceMapper.map(values); 
     console.log(UserVal);
     const response =await LoginUser(UserVal);
-    console.log(response);
+    try{
+      if(!response.error && response.item?.strToken){
+          
+      }
+    }catch(err){
+      console.log(err);
+    }
   };
 
 
