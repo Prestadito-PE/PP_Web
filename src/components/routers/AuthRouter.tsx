@@ -13,7 +13,6 @@ const AuthRouter = () => {
                 <Route path="*" element={<Navigate to="/login" replace/>}/>
         </Routes>
         </div>
-        {/* <LoadingPopup /> */}
     </ContainerAuth>
 
   )

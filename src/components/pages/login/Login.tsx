@@ -14,7 +14,9 @@ import { FormLoginServiceMapper } from "../../interfaces/User/User.interface";
 import { LoginUser } from "../../../services/security/security.service";
 import { useForm } from "../../../hooks/useForm";
 import { SpanErr } from "../../common/span/Spans";
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
+import { useAppDispatch } from "../../../redux/hooks";
+import { loginSession } from '../../../redux/slices/session.slice';
 
 
 
@@ -24,6 +26,8 @@ interface FormUser{
 }
 
 const Login = () => {
+
+  const dispatch = useAppDispatch();
 
   const initialValues: FormUser = {
     strEmail: '',
@@ -48,12 +52,10 @@ const Login = () => {
 
   const onSubmit = async(values:{ [key: string]: any }) => {
     const UserVal=FormLoginServiceMapper.map(values); 
-    console.log(UserVal);
     const response =await LoginUser(UserVal);
     try{
       if(!response.error && response.item?.strToken){
-        var decodeToken = jwt_decode(response.item.strToken);
-        console.log(decodeToken);
+        dispatch(loginSession(response.item));
       }
     }catch(err){
       console.log(err);
