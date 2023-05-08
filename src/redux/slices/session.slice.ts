@@ -13,11 +13,8 @@ export const sessionSlice = createSlice({
   reducers: {
     loginSession: (state, action: PayloadAction<ResponseLogin>) => {
       const { strId, strToken } = action.payload;
-      if (
-        state != null &&
-        (strId.length>0 && strToken.length>0) 
-      ) {
-        return state=(action.payload);
+      if (state != null && (strId.length>0 && strToken.length>0)) {
+        return state=action.payload;
       }
     },
     logoutSession: (state, action: PayloadAction<null>) => {

@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material"
 import PersonIcon from '@mui/icons-material/Person';
 import KeyIcon from '@mui/icons-material/Key';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {GridForm,GridContent} from "./LoginComponents";
 import { SH3 } from "../../common/h/Titles";
 import { DivInput } from "../../common/div/Divs";
@@ -16,6 +16,7 @@ import { useForm } from "../../../hooks/useForm";
 import { SpanErr } from "../../common/span/Spans";
 import { useAppDispatch } from "../../../redux/hooks";
 import { loginSession } from '../../../redux/slices/session.slice';
+import { setItem } from "../../../utils/localStorage";
 
 interface FormUser{
   strEmail:string;
@@ -24,7 +25,6 @@ interface FormUser{
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const initialValues: FormUser = {
     strEmail: '',
@@ -52,8 +52,8 @@ const Login = () => {
     const response =await LoginUser(UserVal);
     try{
       if(!response.error && response.item?.strToken){
+        setItem('session',response.item);
         dispatch(loginSession(response.item));
-        navigate("/home");
       }
     }catch(err){
       console.log(err);
