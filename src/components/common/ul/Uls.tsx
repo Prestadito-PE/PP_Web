@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Colors } from "../../../utils/Colors";
+import { Colors } from "../../../styles/Colors";
 
 export const SUl=styled.ul`
     margin: 2rem 0;

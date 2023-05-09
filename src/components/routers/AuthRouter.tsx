@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import { ContainerAuth } from "../layout/ContainerAuth/ContainerAuth";
+
 const AuthRouter = () => {
   return (
     <ContainerAuth>
@@ -13,7 +14,6 @@ const AuthRouter = () => {
         </Routes>
         </div>
     </ContainerAuth>
-
   )
 }
 

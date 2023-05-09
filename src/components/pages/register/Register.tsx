@@ -13,18 +13,21 @@ import { GridContent, GridForm } from "./RegisterComponents";
 import { useForm } from "../../../hooks/useForm";
 import { SpanErr } from "../../common/span/Spans";
 // import { createUser } from "../../../services/security/user.service";
-import { FormUser, FormUserServiceMapper  } from '../../../types/interfaces/User.interface';
+import { FormUserServiceMapper  } from '../../interfaces/User/User.interface';
 import { createUser } from "../../../services/security/user.service";
-import { useState } from "react";
+import LoadingPopup from "../../common/popup/LoadingPopup";
 // import { createUser } from "../../../services/security/user.service";
 
 
 
-
+interface FormUser{
+  strEmail:string;
+  strPassword:string;
+  strconfirmPassword:string;
+}
 
 const Register = () => {
 
-  const [isLoading, setIsLoading] = useState(false);
 
   const initialValues: FormUser = {
     strEmail: '',
@@ -54,16 +57,12 @@ const Register = () => {
   }
 
   const onSubmit = async(values:{ [key: string]: any }) => {
-    setIsLoading(true);
     const UserVal=FormUserServiceMapper.map(values); 
     const response =await createUser(UserVal);
     console.log(response);
-    setIsLoading(false);
-
-    console.log('Form values', UserVal);
   };
 
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const { values, errors, isLoading, handleChange, handleSubmit } = useForm({
     initialValues,
     onSubmit,
     validate
@@ -71,6 +70,7 @@ const Register = () => {
 
   return (
     <>
+    {isLoading&&<LoadingPopup />}
     <Grid container sx={{height:"100%"}}>
       <GridContent item xs={12} md={6}>
             <Grid container>

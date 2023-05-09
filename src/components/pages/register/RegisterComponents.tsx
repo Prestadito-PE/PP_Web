@@ -1,7 +1,7 @@
 import styled,{keyframes} from 'styled-components';
 import bg_auth from '../../../assets/image/auth/bg_auth.png';
 import { Grid } from "@mui/material";
-import { lg, md } from '../../../media';
+import { lg, md } from '../../../styles/media';
 
 
 const fadeFormY = keyframes`

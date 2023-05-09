@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Colors } from "../../../utils/Colors";
+import { Colors } from "../../../styles/Colors";
 
 interface PropLink{
     txtColor?:string;
