@@ -5,7 +5,7 @@ import { ResponseLogin } from '../../components/interfaces/User/User.interface';
 
 
 
-const initialState: ResponseLogin= getItem('session') || [];
+const initialState: ResponseLogin= getItem('session') || {};
 
 export const sessionSlice = createSlice({
   name: 'session',

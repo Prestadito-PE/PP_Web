@@ -12,11 +12,9 @@ import { SH3 } from '../../common/h/Titles';
 import { GridContent, GridForm } from "./RegisterComponents";
 import { useForm } from "../../../hooks/useForm";
 import { SpanErr } from "../../common/span/Spans";
-// import { createUser } from "../../../services/security/user.service";
 import { FormUserServiceMapper  } from '../../interfaces/User/User.interface';
 import { createUser } from "../../../services/security/user.service";
 import LoadingPopup from "../../common/popup/LoadingPopup";
-// import { createUser } from "../../../services/security/user.service";
 
 
 

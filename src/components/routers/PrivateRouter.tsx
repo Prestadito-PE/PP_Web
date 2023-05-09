@@ -8,5 +8,5 @@ type PrivateRouterProps = {
 export const PrivateRouter = ({ userState, children }: PrivateRouterProps) => {
   return userState
     ? <>{children}</>
-    : <Navigate to="auth/login"/>;
+    : <Navigate to="/auth/login" />;
 }
