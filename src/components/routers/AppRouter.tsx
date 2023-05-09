@@ -4,20 +4,25 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { PublicRouter } from "./PublicRouter";
 import { PrivateRouter } from "./PrivateRouter";
-import { Home } from "../pages/home/Home";
+import { PortalScreen } from "../pages/PortalScreen";
 
 export const AppRouter = () => {
  
-  const [session,setSession] =useState(false);
-  const selector = useAppSelector((state)=>state.sessionReducer)
-
+  const [session,setSession] =useState(true);
+  const selector = useAppSelector((state)=>state.sessionReducer);
+  
   useEffect(() => {
+
       if(selector.strId?.length>0 && selector.strToken?.length>0){
         setSession(true);
       }else{
         setSession(false);
-    }
-  }, [selector])
+     }
+
+  }, [selector]);
+
+
+  console.log(session);
   
   return (
     <BrowserRouter>
@@ -29,7 +34,7 @@ export const AppRouter = () => {
             } />
             <Route path="/*" element={
                 <PrivateRouter userState={session}>
-                    <Home />
+                    <PortalScreen />
                 </PrivateRouter>
               }
             />

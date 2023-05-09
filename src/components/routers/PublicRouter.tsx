@@ -8,5 +8,5 @@ type PublicRouterProps = {
 export const PublicRouter = ({ userState, children }: PublicRouterProps) => {
   return !userState
     ? <>{children}</>
-    : <Navigate to="/login" replace />;
+    : <Navigate to="/" />;
 }
